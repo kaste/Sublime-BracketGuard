@@ -77,11 +77,6 @@ class EventListener(sublime_plugin.EventListener):
         codeStr = view.substr(sublime.Region(0, view.size()))
 
         for index, char in enumerate(codeStr):
-
-            # this leaks memory ?
-            # if len(codeStr) != view.size():
-            #   return successResult
-
             if char not in opener and char not in closer:
                 continue
 
