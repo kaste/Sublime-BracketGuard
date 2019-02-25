@@ -15,10 +15,6 @@ class EventListener(sublime_plugin.EventListener):
     def __init__(self):
         self.latest_keypresses = {}
 
-    def on_modified(self, view):
-        if view.settings().get("is_test", False):
-            self.highlightBracketError(view)
-
     def on_modified_async(self, view):
         self.clearRegions(view)
         if self.doAutoCheck(view):
