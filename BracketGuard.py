@@ -34,6 +34,14 @@ class EventListener(sublime_plugin.EventListener):
         return self.settings().get("check_on_save")
 
     def doAutoCheck(self, view):
+        if (
+            view.is_scratch()
+            or view.is_read_only()
+            or view.settings().get("repl")
+            or view.settings().get('is_widget')
+        ):
+            return False
+
         threshold = self.settings().get("file_length_threshold")
         return threshold == -1 or threshold >= view.size()
 
